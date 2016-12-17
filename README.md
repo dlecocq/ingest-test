@@ -67,3 +67,25 @@ LEAID,SCHID,SCH_PSENR_M,SCH_PSENR_F,SCH_PSENR_HI_M,SCH_PSENR_HI_F
 ```
 
 (Note: `SCH_PSENR` and `SCH_PSENR_HI` are unisex aggregate metrics)
+
+*Development*
+
+This comes with a `Vagrantfile` with everything needed to provision a development
+environment:
+
+```bash
+# Create and provision
+vagrant up
+
+# Log into the vagrant box
+vagrant ssh
+
+# Move to the code, activate the virtualenv and make the tests
+cd /vagrant
+source venv/bin/activate
+make test
+```
+
+*Tests*
+
+Tests require 100% code coverage, and are run with `make test`.
