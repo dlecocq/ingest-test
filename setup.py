@@ -20,10 +20,12 @@ setup(
         'Topic :: Internet :: WWW/HTTP'
     ],
     packages         = [
-        'ingest'
+        'ingest',
+        'ingest.formats'
     ],
     package_dir      = {
-        'ingest': 'ingest'
+        'ingest': 'ingest',
+        'ingest.formats': 'ingest/formats'
     },
     install_requires = [
         'six'
