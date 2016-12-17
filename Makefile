@@ -1,6 +1,8 @@
 .PHONY: test
 test:
 	nosetests --verbose --with-coverage
+	pylint ingest/
+	pep8 ingest/
 
 install:
 	python setup.py install

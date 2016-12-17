@@ -88,4 +88,4 @@ make test
 
 *Tests*
 
-Tests require 100% code coverage, and are run with `make test`.
+Tests require 100% code coverage and linting, and are run with `make test`.
