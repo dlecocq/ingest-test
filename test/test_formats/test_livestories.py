@@ -13,9 +13,9 @@ class LiveStoriesTest(BaseTest):
     def test_round_trip(self):
         '''Can round-trip records through a file.'''
         rows = [
-            Row('place-1', '1', 'field-1', 'value-1'),
-            Row('place-2', '2', 'field-2', 'value-2'),
-            Row('place-3', '3', 'field-3', 'value-3')
+            Row('place-1', '1', 'metric-1', 'value-1'),
+            Row('place-2', '2', 'metric-2', 'value-2'),
+            Row('place-3', '3', 'metric-3', 'value-3')
         ]
         with self.tmpdir() as directory:
             path = os.path.join(directory, 'example.livestories')

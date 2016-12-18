@@ -4,7 +4,7 @@ import collections
 import contextlib
 
 # The Row "class"
-Row = collections.namedtuple('Row', ['location', 'time', 'name', 'value'])
+Row = collections.namedtuple('Row', ['place', 'time', 'metric', 'value'])
 
 
 class FormatBaseClass(object):
