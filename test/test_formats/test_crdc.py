@@ -38,3 +38,32 @@ class CrdcTest(BaseTest):
         actual = Crdc(fobj, '2013').rows()
 
         self.assertEqual(sorted(expected), sorted(actual))
+
+    def test_field_order_independence(self):
+        '''Can read records from the CSV no matter the order of the fields'''
+        lines = [
+            'SCHID,LEAID,SCH_PSENR_M,SCH_PSENR_F,SCH_PSENR_HI_M,SCH_PSENR_HI_F',
+            '01705,0100000,100,92,12,16',
+            '01862,0100000,51,50,8,-9',
+            '01923,0100001,68,73,3,5',
+            '01962,0100001,12,10,0,1'
+        ]
+        fobj = StringIO('\n'.join(lines))
+        expected = [
+            Row('0100000', '2013', 'SCH_PSENR_M', '151'),
+            Row('0100000', '2013', 'SCH_PSENR_F', '142'),
+            Row('0100000', '2013', 'SCH_PSENR', '293'),
+            Row('0100000', '2013', 'SCH_PSENR_HI_M', '20'),
+            Row('0100000', '2013', 'SCH_PSENR_HI_F', '16'),
+            Row('0100000', '2013', 'SCH_PSENR_HI', '36'),
+            Row('0100001', '2013', 'SCH_PSENR_M', '80'),
+            Row('0100001', '2013', 'SCH_PSENR_F', '83'),
+            Row('0100001', '2013', 'SCH_PSENR', '163'),
+            Row('0100001', '2013', 'SCH_PSENR_HI_M', '3'),
+            Row('0100001', '2013', 'SCH_PSENR_HI_F', '6'),
+            Row('0100001', '2013', 'SCH_PSENR_HI', '9')
+        ]
+
+        actual = Crdc(fobj, '2013').rows()
+
+        self.assertEqual(sorted(expected), sorted(actual))
