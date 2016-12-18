@@ -1,35 +1,18 @@
 '''The LiveStories data format.'''
 
-import contextlib
-from collections import namedtuple
+from . import FormatBaseClass, Row
 
 
-class LiveStories(object):
+class LiveStories(FormatBaseClass):
     '''A file-like object for interacting with the livestories data format.'''
-
-    Row = namedtuple('Row', ['location', 'time', 'name', 'value'])
 
     field_seperator = '\t'
     record_seperator = '\n'
 
-    @classmethod
-    @contextlib.contextmanager
-    def open(cls, path, mode='r'):
-        '''Open the file provided as this format.'''
-        with contextlib.closing(cls(open(path, mode))) as fobj:
-            yield fobj
-
-    def __init__(self, fobj):
-        self.fobj = fobj
-
-    def close(self):
-        '''Close this file.'''
-        self.fobj.close()
-
     def rows(self):
         '''Generator for all the rows in the file.'''
         for line in self.fobj:
-            yield self.Row(*line.strip(self.record_seperator).split(self.field_seperator))
+            yield Row(*line.strip(self.record_seperator).split(self.field_seperator))
 
     def write(self, rows):
         '''Write the iterable of rows to this file.'''
